@@ -24,7 +24,45 @@ a full-featured [Open Source ERP](https://www.odoo.com) when you install several
 
 ## Getting started with Odoo
 
-For a standard installation please follow the [Setup instructions](https://www.odoo.com/documentation/master/administration/install/install.html)
+### Quick Start
+
+For rapid deployment and customization, use our enhanced setup tools:
+
+```bash
+# Quick development setup
+./deployment/scripts/quick_setup.sh
+
+# Start development server
+./deployment/scripts/module_helper.sh start --dev=all
+
+# Create custom modules
+./deployment/scripts/module_helper.sh create my_custom_module
+```
+
+### Production Deployment
+
+```bash
+# Complete production setup (run as root)
+sudo ./deployment/scripts/production_setup.sh
+```
+
+### Docker Deployment
+
+```bash
+# Quick Docker setup
+cd deployment/docker
+docker-compose up -d
+```
+
+### Documentation
+
+- **[DEPLOYMENT.md](DEPLOYMENT.md)** - Comprehensive deployment guide
+- **[CUSTOMIZATION.md](CUSTOMIZATION.md)** - Module development and customization guide  
+- **[deployment/README.md](deployment/README.md)** - Deployment tools and scripts documentation
+
+### Standard Installation
+
+For a standard installation, follow the [Setup instructions](https://www.odoo.com/documentation/master/administration/install/install.html)
 from the documentation.
 
 To learn the software, we recommend the [Odoo eLearning](https://www.odoo.com/slides),

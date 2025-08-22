@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <!-- Category Views -->
+        <record id="view_todo_category_form" model="ir.ui.view">
+            <field name="name">todo.category.form</field>
+            <field name="model">todo.category</field>
+            <field name="arch" type="xml">
+                <form string="Todo Category">
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="action_view_tasks" type="object" class="oe_stat_button" icon="fa-tasks">
+                                <field name="task_count" widget="statinfo" string="Tasks"/>
+                            </button>
+                        </div>
+                        <group>
+                            <field name="name"/>
+                            <field name="color" widget="color"/>
+                            <field name="active"/>
+                        </group>
+                        <field name="description" placeholder="Category description..."/>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <record id="view_todo_category_tree" model="ir.ui.view">
+            <field name="name">todo.category.tree</field>
+            <field name="model">todo.category</field>
+            <field name="arch" type="xml">
+                <tree string="Todo Categories">
+                    <field name="name"/>
+                    <field name="task_count"/>
+                    <field name="active"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="view_todo_category_search" model="ir.ui.view">
+            <field name="name">todo.category.search</field>
+            <field name="model">todo.category</field>
+            <field name="arch" type="xml">
+                <search string="Search Categories">
+                    <field name="name"/>
+                    <field name="description"/>
+                    <filter name="active" string="Active" domain="[('active', '=', True)]"/>
+                </search>
+            </field>
+        </record>
+        
+        <record id="action_todo_category" model="ir.actions.act_window">
+            <field name="name">Todo Categories</field>
+            <field name="res_model">todo.category</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create your first todo category!
+                </p>
+                <p>
+                    Categories help organize your tasks by type or project.
+                </p>
+            </field>
+        </record>
+        
+    </data>
+</odoo>

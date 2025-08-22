@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <!-- Todo Task Report -->
+        <record id="action_report_todo_task" model="ir.actions.report">
+            <field name="name">Todo Task Report</field>
+            <field name="model">todo.task</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">example_todo_app.report_todo_task_document</field>
+            <field name="report_file">example_todo_app.report_todo_task_document</field>
+            <field name="binding_model_id" ref="model_todo_task"/>
+            <field name="binding_type">report</field>
+        </record>
+        
+        <template id="report_todo_task_document">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-call="web.external_layout">
+                        <div class="page">
+                            <div class="oe_structure"/>
+                            
+                            <div class="row">
+                                <div class="col-12">
+                                    <h2 class="mt-4">
+                                        <span t-field="doc.name"/>
+                                        <small class="text-muted"> - Todo Task Report</small>
+                                    </h2>
+                                </div>
+                            </div>
+                            
+                            <div class="row mt-4">
+                                <div class="col-6">
+                                    <table class="table table-sm table-borderless">
+                                        <tr>
+                                            <td><strong>Assigned To:</strong></td>
+                                            <td><span t-field="doc.assigned_to.name"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Category:</strong></td>
+                                            <td><span t-field="doc.category_id.name"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Priority:</strong></td>
+                                            <td>
+                                                <t t-if="doc.priority == '0'">Low</t>
+                                                <t t-elif="doc.priority == '1'">Normal</t>
+                                                <t t-elif="doc.priority == '2'">High</t>
+                                                <t t-elif="doc.priority == '3'">Urgent</t>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>State:</strong></td>
+                                            <td>
+                                                <span t-field="doc.state" t-options="{'widget': 'badge'}"/>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="col-6">
+                                    <table class="table table-sm table-borderless">
+                                        <tr>
+                                            <td><strong>Created Date:</strong></td>
+                                            <td><span t-field="doc.date_created" t-options="{'widget': 'datetime'}"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Deadline:</strong></td>
+                                            <td>
+                                                <span t-field="doc.date_deadline" t-options="{'widget': 'date'}"/>
+                                                <t t-if="doc.is_overdue">
+                                                    <span class="badge badge-danger ml-2">Overdue</span>
+                                                </t>
+                                            </td>
+                                        </tr>
+                                        <tr t-if="doc.date_completed">
+                                            <td><strong>Completed Date:</strong></td>
+                                            <td><span t-field="doc.date_completed" t-options="{'widget': 'datetime'}"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Progress:</strong></td>
+                                            <td>
+                                                <div class="progress" style="height: 20px;">
+                                                    <div class="progress-bar" role="progressbar" 
+                                                         t-attf-style="width: #{doc.progress_percentage}%"
+                                                         t-attf-aria-valuenow="#{doc.progress_percentage}" 
+                                                         aria-valuemin="0" aria-valuemax="100">
+                                                        <span t-esc="doc.progress_percentage"/>%
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            
+                            <div class="row mt-4" t-if="doc.tag_ids">
+                                <div class="col-12">
+                                    <strong>Tags:</strong>
+                                    <t t-foreach="doc.tag_ids" t-as="tag">
+                                        <span class="badge badge-secondary mr-1" t-field="tag.name"/>
+                                    </t>
+                                </div>
+                            </div>
+                            
+                            <div class="row mt-4" t-if="doc.description">
+                                <div class="col-12">
+                                    <h4>Description</h4>
+                                    <div t-field="doc.description"/>
+                                </div>
+                            </div>
+                            
+                            <div class="row mt-4" t-if="doc.notes">
+                                <div class="col-12">
+                                    <h4>Internal Notes</h4>
+                                    <p t-field="doc.notes"/>
+                                </div>
+                            </div>
+                            
+                            <div class="oe_structure"/>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+        
+    </data>
+</odoo>

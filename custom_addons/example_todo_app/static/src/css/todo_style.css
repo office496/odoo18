@@ -1,0 +1,61 @@
+/* Todo App Custom Styles */
+
+.todo-task-overdue {
+    background-color: #f8d7da !important;
+    border-color: #f5c6cb !important;
+}
+
+.todo-task-high-priority {
+    border-left: 4px solid #dc3545;
+}
+
+.todo-task-urgent-priority {
+    border-left: 4px solid #ff0000;
+    background-color: #fff5f5;
+}
+
+.todo-progress-bar {
+    height: 20px;
+    border-radius: 4px;
+}
+
+.todo-kanban-card {
+    margin-bottom: 10px;
+}
+
+.todo-kanban-card .o_kanban_record_title {
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.todo-deadline-warning {
+    color: #f39c12;
+    font-weight: bold;
+}
+
+.todo-deadline-danger {
+    color: #e74c3c;
+    font-weight: bold;
+}
+
+.todo-completed {
+    opacity: 0.7;
+    text-decoration: line-through;
+}
+
+/* Priority indicators */
+.priority-urgent {
+    color: #dc3545 !important;
+}
+
+.priority-high {
+    color: #fd7e14 !important;
+}
+
+.priority-normal {
+    color: #6c757d !important;
+}
+
+.priority-low {
+    color: #28a745 !important;
+}
