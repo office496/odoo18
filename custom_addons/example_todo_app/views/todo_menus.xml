@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <!-- Main Menu -->
+        <menuitem id="menu_todo_root" name="Todo App" sequence="10" web_icon="example_todo_app,static/description/icon.png"/>
+        
+        <!-- Tasks Submenu -->
+        <menuitem id="menu_todo_tasks" name="Tasks" parent="menu_todo_root" sequence="10"/>
+        <menuitem id="menu_todo_task_all" name="All Tasks" parent="menu_todo_tasks" 
+                  action="action_todo_task" sequence="10"/>
+        <menuitem id="menu_todo_task_my" name="My Tasks" parent="menu_todo_tasks" 
+                  action="action_todo_task_my" sequence="20"/>
+        <menuitem id="menu_todo_task_overdue" name="Overdue Tasks" parent="menu_todo_tasks" 
+                  action="action_todo_task_overdue" sequence="30"/>
+        
+        <!-- Configuration Submenu -->
+        <menuitem id="menu_todo_config" name="Configuration" parent="menu_todo_root" sequence="90" 
+                  groups="example_todo_app.group_todo_manager"/>
+        <menuitem id="menu_todo_category" name="Categories" parent="menu_todo_config" 
+                  action="action_todo_category" sequence="10"/>
+        
+        <!-- Reporting Submenu -->
+        <menuitem id="menu_todo_reports" name="Reports" parent="menu_todo_root" sequence="80"/>
+        
+    </data>
+</odoo>
